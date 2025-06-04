@@ -347,7 +347,10 @@ class CalculadoraCajas:
             dimensiones = self.calcular_dimensiones(largo, ancho, alto, ceja, tipo_codigo)
             
             # Cálculos financieros
-            costo_materia = (dimensiones['area'] * factor) / 10000
+            # El cálculo correcto se realiza sobre mil unidades de área
+            # para mantener consistencia con la versión ejecutada desde
+            # el código fuente (main.py) y la documentación.
+            costo_materia = (dimensiones['area'] * factor) / 1000
             precio_venta = costo_materia * utilidad
             precio_venta_ajustado = precio_venta * (1 + descuento / 100)
             ganancia_total = precio_venta_ajustado - costo_materia
